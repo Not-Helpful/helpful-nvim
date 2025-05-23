@@ -1052,7 +1052,7 @@ vim.keymap.set({ "n", "v", "i" }, "<M-j>", "<C-w>j")
 vim.keymap.set({ "n", "v", "i" }, "<M-k>", "<C-w>k")
 vim.keymap.set({ "n", "v", "i" }, "<M-l>", "<C-w>l")
 
-vim.keymap.set({ "n", "v", "i" }, "<M-->", ":Ex\n")
+vim.keymap.set({ "n", "v", "i" }, "-", ":Ex\n")
 
 vim.keymap.set({ "n" }, "<leader>fs", ":w\n")
 vim.keymap.set({ "n" }, "<leader>tt", ":terminal\n")
