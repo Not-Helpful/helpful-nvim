@@ -389,9 +389,13 @@ require("lazy").setup({
 			},
 		},
 	},
+
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
+		opts = {
+			inlay_hints = { enables = false },
+		},
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			-- Mason must be loaded before its dependents so we need to set it up here.
@@ -760,7 +764,7 @@ require("lazy").setup({
 				-- <c-k>: Toggle signature help
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
-				preset = "default",
+				preset = "super-tab",
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -957,8 +961,8 @@ require("lazy").setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --
---
-
+vim.lsp.enable("hls")
+require("lspconfig").hls.setup({})
 vim.keymap.set({ "n", "v", "i" }, "<M-v>", ":vsplit\n")
 vim.keymap.set({ "n", "v", "i" }, "<M-s>", ":split\n")
 vim.keymap.set({ "n", "v", "i" }, "<M-q>", ":q\n")
