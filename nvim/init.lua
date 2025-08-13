@@ -705,7 +705,7 @@ require("lazy").setup({
 			},
 		},
 	},
-
+	{ "dasupradyumna/midnight.nvim", lazy = false, priority = 1000 },
 	{ -- Autocompletion
 		"saghen/blink.cmp",
 		event = "VimEnter",
@@ -823,7 +823,7 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("midnight")
 		end,
 	},
 
@@ -963,18 +963,43 @@ require("lazy").setup({
 --
 vim.lsp.enable("hls")
 require("lspconfig").hls.setup({})
-vim.keymap.set({ "n", "v", "i" }, "<M-v>", ":vsplit\n")
-vim.keymap.set({ "n", "v", "i" }, "<M-s>", ":split\n")
-vim.keymap.set({ "n", "v", "i" }, "<M-q>", ":q\n")
+vim.keymap.set({ "n", "v", "i" }, "<M-v>", "<esc>:vsplit\n")
+vim.keymap.set({ "n", "v", "i" }, "<M-s>", "<esc>:split\n")
+vim.keymap.set({ "n", "v", "i" }, "<M-t>", "<esc>:tabnew\n")
+vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<esc>:q\n")
 vim.keymap.set({ "n", "v", "i" }, "<M-h>", "<C-w>h")
 vim.keymap.set({ "n", "v", "i" }, "<M-j>", "<C-w>j")
 vim.keymap.set({ "n", "v", "i" }, "<M-k>", "<C-w>k")
 vim.keymap.set({ "n", "v", "i" }, "<M-l>", "<C-w>l")
+vim.keymap.set({ "n", "v", "i" }, "<M-1>", "<esc>gT")
+vim.keymap.set({ "n", "v", "i" }, "<M-2>", "<esc>gt")
 
-vim.keymap.set({ "n" }, "-", ":Ex\n")
+vim.keymap.set({ "n" }, "-", "<esc>:Ex\n")
 
 vim.keymap.set({ "n" }, "<leader>fs", ":w\n")
 vim.keymap.set({ "n" }, "<leader>tt", ":terminal\n")
 vim.keymap.set({ "n", "v", "i" }, "<M-e>", "<C-[>")
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.opt.expandtab = true
+vim.o.tabstop = 3
+vim.o.shiftwidth = 3
+
+if vim.g.neovide then
+	vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.2
+	local map = vim.keymap
+	map.set({ "n", "v" }, "<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
+	map.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
+	map.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
+end
+
+vim.g.clipboard = {
+	name = "win32yank-wsl",
+	copy = {
+		["+"] = "win32yank.exe -i --crlf",
+		["*"] = "win32yank.exe -i --crlf",
+	},
+	paste = {
+		["+"] = "win32yank.exe -o --lf",
+		["*"] = "win32yank.exe -o --lf",
+	},
+	cache_enabled = true,
+}

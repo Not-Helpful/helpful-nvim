@@ -1,41 +1,41 @@
 local keys = {
 	{
-		"<leader>ml",
+		"<localleader>l",
 		":CornelisQuestionToMeta\n:CornelisLoad\n:CornelisGoals\n",
 		desc = "Load",
 	},
 	{
-		"<leader>mr",
+		"<localleader>r",
 		":CornelisRefine\n",
 		desc = "Refine",
 	},
 	{
-		"<leader>ms",
+		"<localleader>s",
 		":CornelisSolve\n",
 		desc = "Solve",
 	},
 	{
-		"<leader>mb",
+		"<localleader>b",
 		":CornelisPrevGoal\n",
 		desc = "Previous Goal",
 	},
 	{
-		"<leader>mf",
+		"<localleader>f",
 		":CornelisNextGoal\n",
 		desc = "Next Goal",
 	},
 	{
-		"<leader>ma",
+		"<localleader>a",
 		":CornelisAuto\n",
 		desc = "Auto Solve Attempt",
 	},
 	{
-		"<leader>mt",
+		"<localleader>t",
 		":CornelisTypeContextInfer\n",
 		desc = "Hole Info",
 	},
 	{
-		"<leader>mc",
+		"<localleader>c",
 		":CornelisMakeCase\n",
 		desc = "Split Case",
 	},
@@ -43,7 +43,7 @@ local keys = {
 
 local function mapkey(key)
 	print(key[1])
-	vim.keymap.set({ "n" }, key[1], key[2], { desc = key[3] })
+	vim.keymap.set({ "n" }, key[1], key[2], { desc = key[3], buffer = true })
 end
 
 local function mapAllKeys(allkeys)
