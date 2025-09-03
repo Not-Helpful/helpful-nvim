@@ -42,7 +42,6 @@ local keys = {
 }
 
 local function mapkey(key)
-	print(key[1])
 	vim.keymap.set({ "n" }, key[1], key[2], { desc = key[3], buffer = true })
 end
 

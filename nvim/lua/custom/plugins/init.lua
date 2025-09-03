@@ -6,6 +6,7 @@
 --
 
 vim.g.cornelis_agda_prefix = "<M-m>"
+
 return {
 	"isovector/cornelis",
 	name = "cornelis",
